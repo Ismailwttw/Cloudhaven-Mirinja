@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cloudhaven Mirinja — Hill Resort</title>
+<meta name="description" content="A premium Mirinja Valley hill resort booking website demo.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#18322c; --muted:#6d7974; --cream:#f7f4ec; --white:#fff;
+  --leaf:#2d6252; --gold:#c99b54; --line:#e7e3d9; --dark:#10251f;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:"DM Sans",sans-serif;color:var(--ink);background:#fff;line-height:1.6}
+a{text-decoration:none;color:inherit}
+img{width:100%;display:block;object-fit:cover}
+.container{width:min(1180px,92%);margin:auto}
+.topbar{background:var(--dark);color:#e9eee9;font-size:13px;padding:9px 0}
+.topbar .container{display:flex;justify-content:space-between;gap:15px}
+nav{position:absolute;top:0;left:0;width:100%;z-index:10;color:#fff}
+.nav-inner{height:82px;display:flex;align-items:center;justify-content:space-between}
+.logo{font-family:"Playfair Display",serif;font-size:27px;font-weight:700;letter-spacing:.5px}
+.logo span{color:#e0b86d}
+.navlinks{display:flex;gap:28px;font-size:14px}
+.navlinks a{opacity:.92}.navlinks a:hover{color:#e0b86d}
+.navbtn{border:1px solid rgba(255,255,255,.6);padding:11px 18px;border-radius:30px;font-size:13px}
+.hero{min-height:760px;background:linear-gradient(90deg,rgba(8,28,22,.78),rgba(8,28,22,.28)),url("https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=2000&q=85") center/cover;display:flex;align-items:center;color:#fff;padding-top:50px}
+.hero-content{max-width:720px}
+.eyebrow{letter-spacing:3px;text-transform:uppercase;font-size:12px;color:#e7c27e;font-weight:700;margin-bottom:18px}
+h1{font-family:"Playfair Display",serif;font-size:clamp(48px,7vw,84px);line-height:1.02;margin-bottom:22px}
+.hero p{font-size:18px;max-width:620px;color:#f0f3ef;margin-bottom:30px}
+.btn{display:inline-flex;align-items:center;justify-content:center;padding:14px 24px;border-radius:3px;background:var(--gold);color:#18241f;font-weight:700;border:none;cursor:pointer}
+.btn.alt{background:#fff;margin-left:10px}
+.bookingbar{margin-top:-48px;position:relative;z-index:3}
+.booking-box{background:#fff;box-shadow:0 18px 50px rgba(20,35,28,.15);padding:22px;display:grid;grid-template-columns:1.2fr 1.2fr 1fr 1fr auto;gap:12px;border-radius:5px}
+.field label{display:block;font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#7c857f;margin-bottom:6px}
+.field input,.field select{width:100%;height:46px;border:1px solid var(--line);padding:0 12px;font:inherit;color:var(--ink);background:#fff}
+.section{padding:100px 0}
+.section.cream{background:var(--cream)}
+.section-head{text-align:center;max-width:700px;margin:0 auto 45px}
+.section-head .eyebrow{color:var(--leaf)}
+.section-head h2{font-family:"Playfair Display",serif;font-size:44px;line-height:1.15;margin-bottom:12px}
+.section-head p{color:var(--muted)}
+.intro{display:grid;grid-template-columns:1.05fr .95fr;gap:70px;align-items:center}
+.intro-img{height:570px;border-radius:5px;overflow:hidden}
+.intro-copy h2{font-family:"Playfair Display",serif;font-size:48px;line-height:1.15;margin:10px 0 20px}
+.intro-copy p{color:var(--muted);margin-bottom:18px}
+.signature{font-family:"Playfair Display",serif;font-size:20px;margin-top:25px}
+.rooms{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{background:#fff;border:1px solid var(--line);overflow:hidden}
+.card-img{height:245px}
+.card-body{padding:22px}
+.card-body h3{font-family:"Playfair Display",serif;font-size:25px;margin-bottom:6px}
+.meta{font-size:13px;color:var(--muted);margin-bottom:14px}
+.price{font-weight:700;font-size:20px;color:var(--leaf);margin-bottom:16px}
+.card-actions{display:flex;justify-content:space-between;align-items:center}
+.smallbtn{padding:10px 15px;border:1px solid var(--leaf);color:var(--leaf);font-size:13px;font-weight:700;cursor:pointer;background:#fff}
+.features{display:grid;grid-template-columns:repeat(4,1fr);gap:18px}
+.feature{padding:28px 20px;border:1px solid var(--line);background:#fff;text-align:center}
+.feature .icon{font-size:30px;margin-bottom:10px}
+.feature h3{font-family:"Playfair Display",serif;font-size:20px;margin-bottom:5px}
+.feature p{font-size:13px;color:var(--muted)}
+.gallery{display:grid;grid-template-columns:1.2fr .8fr .8fr;grid-template-rows:260px 260px;gap:12px}
+.gallery img{height:100%;border-radius:3px}
+.gallery .big{grid-row:span 2}
+.experience{background:var(--dark);color:#fff}
+.exp-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}
+.exp-grid img{height:570px;border-radius:5px}
+.exp-grid h2{font-family:"Playfair Display",serif;font-size:48px;line-height:1.1;margin:10px 0 20px}
+.exp-grid p{color:#cbd6d1;margin-bottom:20px}
+.exp-list{display:grid;gap:12px;margin:25px 0}
+.exp-item{display:flex;gap:12px;align-items:center;border-bottom:1px solid rgba(255,255,255,.13);padding-bottom:12px}
+.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.quote{padding:28px;background:var(--cream);border-radius:4px}
+.stars{color:#b88a43;letter-spacing:3px;margin-bottom:12px}
+.quote p{font-family:"Playfair Display",serif;font-size:19px;line-height:1.5;margin-bottom:18px}
+.quote small{color:var(--muted)}
+.cta{padding:85px 0;background:linear-gradient(90deg,rgba(13,38,30,.84),rgba(13,38,30,.55)),url("https://images.unsplash.com/photo-1445019980597-93fa8acb246c?auto=format&fit=crop&w=1800&q=85") center/cover;color:#fff;text-align:center}
+.cta h2{font-family:"Playfair Display",serif;font-size:50px;max-width:750px;margin:0 auto 20px;line-height:1.1}
+.cta p{max-width:650px;margin:0 auto 25px;color:#edf2ef}
+footer{background:#0c1d18;color:#bfcac5;padding:55px 0 25px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 1fr 1fr 1fr;gap:35px}
+footer h3{color:#fff;margin-bottom:13px;font-family:"Playfair Display",serif}
+footer p,footer a{font-size:14px;color:#aebbb5}
+footer a{display:block;margin:7px 0}
+.copy{border-top:1px solid rgba(255,255,255,.1);margin-top:35px;padding-top:18px;font-size:12px;display:flex;justify-content:space-between}
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.65);z-index:50;align-items:center;justify-content:center;padding:20px}
+.modal.show{display:flex}
+.modal-box{background:#fff;width:min(560px,100%);padding:28px;border-radius:5px;position:relative}
+.modal-box h2{font-family:"Playfair Display",serif;font-size:30px;margin-bottom:5px}
+.close{position:absolute;right:18px;top:14px;border:0;background:none;font-size:28px;cursor:pointer}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:20px 0}
+.form-grid .full{grid-column:1/-1}
+.form-grid input,.form-grid select,.form-grid textarea{width:100%;padding:12px;border:1px solid var(--line);font:inherit}
+.form-grid textarea{min-height:90px}
+.notice{font-size:12px;color:var(--muted);margin-top:10px}
+@media(max-width:900px){
+ .navlinks{display:none}.hero{min-height:680px}
+ .booking-box{grid-template-columns:1fr 1fr}.booking-box .btn{grid-column:1/-1}
+ .intro,.exp-grid{grid-template-columns:1fr;gap:35px}.intro-img,.exp-grid img{height:420px}
+ .rooms,.testimonials{grid-template-columns:1fr 1fr}.features{grid-template-columns:1fr 1fr}
+ .gallery{grid-template-columns:1fr 1fr;grid-template-rows:220px 220px 220px}.gallery .big{grid-row:span 2}
+ .footer-grid{grid-template-columns:1fr 1fr}
+}
+@media(max-width:600px){
+ .topbar .container{justify-content:center;text-align:center}.topbar .right{display:none}
+ .hero{min-height:650px}.hero p{font-size:16px}.btn{padding:13px 18px}
+ .booking-box{grid-template-columns:1fr;padding:16px}.booking-box .btn{grid-column:auto}
+ .section{padding:70px 0}.section-head h2,.intro-copy h2,.exp-grid h2{font-size:37px}
+ .rooms,.testimonials,.features{grid-template-columns:1fr}.gallery{display:grid;grid-template-columns:1fr;grid-template-rows:230px 230px 230px 230px}.gallery .big{grid-row:auto}
+ .footer-grid{grid-template-columns:1fr}.copy{display:block}
+ .form-grid{grid-template-columns:1fr}.form-grid .full{grid-column:auto}
+}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container">
+    <span>Mirinja Valley · Lama, Bandarban</span>
+    <span class="right">Reservations: +880 1XXX-XXXXXX · Open daily</span>
+  </div>
+</div>
+
+<nav>
+  <div class="container nav-inner">
+    <a class="logo" href="#">Cloud<span>haven</span></a>
+    <div class="navlinks">
+      <a href="#stay">Stay</a><a href="#experience">Experience</a><a href="#gallery">Gallery</a><a href="#about">About</a><a href="#contact">Contact</a>
+    </div>
+    <a class="navbtn" href="#book">Book your stay</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="container hero-content">
+    <div class="eyebrow">A hilltop escape in Mirinja Valley</div>
+    <h1>Stay above the clouds.</h1>
+    <p>Wake to misty ridgelines, golden sunsets and the quiet rhythm of the hills. A modern eco-retreat designed for slow mornings and unforgettable evenings.</p>
+    <a class="btn" href="#book">Check availability</a>
+    <a class="btn alt" href="#stay">Explore rooms</a>
+  </div>
+</header>
+
+<section class="bookingbar" id="book">
+  <div class="container">
+    <form class="booking-box" onsubmit="openBooking(event)">
+      <div class="field"><label>Check in</label><input id="checkin" type="date" required></div>
+      <div class="field"><label>Check out</label><input id="checkout" type="date" required></div>
+      <div class="field"><label>Guests</label><select id="guests"><option>2 Guests</option><option>3 Guests</option><option>4 Guests</option><option>5 Guests</option><option>6+ Guests</option></select></div>
+      <div class="field"><label>Stay type</label><select id="staytype"><option>Any room</option><option>Cloud Villa</option><option>Forest Cottage</option><option>Family Jhum Ghar</option></select></div>
+      <button class="btn" type="submit">Search</button>
+    </form>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="container intro">
+    <div class="intro-img"><img src="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1200&q=85" alt="Mountain landscape"></div>
+    <div class="intro-copy">
+      <div class="eyebrow">Welcome to Cloudhaven</div>
+      <h2>A quieter way to experience Bandarban.</h2>
+      <p>Cloudhaven is a fictional resort website concept inspired by the mountain stays of Mirinja Valley. The design focuses on the things guests usually care about first: rooms, availability, views, experiences, directions and simple booking.</p>
+      <p>Replace the demo photos, room names, prices, phone number and location with your client's real information before publishing.</p>
+      <div class="signature">— Your mountain story starts here</div>
+    </div>
+  </div>
+</section>
+
+<section class="section cream" id="stay">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Stay your way</div>
+      <h2>Rooms made for the view.</h2>
+      <p>Three sample room types. Connect these cards to Firebase later for live availability, pricing and booking management.</p>
+    </div>
+    <div class="rooms">
+      <article class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?auto=format&fit=crop&w=1000&q=85" alt="Cloud Villa"></div>
+        <div class="card-body"><h3>Cloud Villa</h3><div class="meta">2–4 guests · Valley view · Private deck</div><div class="price">৳ 5,500 / night</div><div class="card-actions"><span>Breakfast available</span><button class="smallbtn" onclick="chooseRoom('Cloud Villa')">Book</button></div></div>
+      </article>
+      <article class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=1000&q=85" alt="Forest Cottage"></div>
+        <div class="card-body"><h3>Forest Cottage</h3><div class="meta">2–3 guests · Forest view · Cozy interior</div><div class="price">৳ 4,200 / night</div><div class="card-actions"><span>Private washroom</span><button class="smallbtn" onclick="chooseRoom('Forest Cottage')">Book</button></div></div>
+      </article>
+      <article class="card">
+        <div class="card-img"><img src="https://images.unsplash.com/photo-1601918774946-25832a4be0d6?auto=format&fit=crop&w=1000&q=85" alt="Family Jhum Ghar"></div>
+        <div class="card-body"><h3>Family Jhum Ghar</h3><div class="meta">4–8 guests · Hill view · Group friendly</div><div class="price">৳ 7,500 / night</div><div class="card-actions"><span>Extra beds available</span><button class="smallbtn" onclick="chooseRoom('Family Jhum Ghar')">Book</button></div></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head"><div class="eyebrow">Made for the hills</div><h2>Everything you need for a comfortable escape.</h2></div>
+    <div class="features">
+      <div class="feature"><div class="icon">🌄</div><h3>Sunset Deck</h3><p>A dedicated viewpoint for golden-hour photos.</p></div>
+      <div class="feature"><div class="icon">🍲</div><h3>Hill Kitchen</h3><p>Local-inspired meals and warm drinks.</p></div>
+      <div class="feature"><div class="icon">🔥</div><h3>Bonfire Nights</h3><p>Evenings under the stars, subject to weather.</p></div>
+      <div class="feature"><div class="icon">🥾</div><h3>Nature Walks</h3><p>Optional guided walks around the valley.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section cream" id="gallery">
+  <div class="container">
+    <div class="section-head"><div class="eyebrow">The view is the destination</div><h2>A glimpse of your next escape.</h2></div>
+    <div class="gallery">
+      <img class="big" src="https://images.unsplash.com/photo-1464278533981-50106e6176b1?auto=format&fit=crop&w=1300&q=85" alt="Mountain valley">
+      <img src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?auto=format&fit=crop&w=900&q=85" alt="Forest mountain">
+      <img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=85" alt="Mountain road">
+      <img src="https://images.unsplash.com/photo-1501785888041-af3ef285b470?auto=format&fit=crop&w=900&q=85" alt="Lake and mountains">
+      <img src="https://images.unsplash.com/photo-1500534314209-a25ddb2bd429?auto=format&fit=crop&w=900&q=85" alt="Sunset landscape">
+    </div>
+  </div>
+</section>
+
+<section class="section experience" id="experience">
+  <div class="container exp-grid">
+    <img src="https://images.unsplash.com/photo-1511497584788-876760111969?auto=format&fit=crop&w=1200&q=85" alt="Forest experience">
+    <div>
+      <div class="eyebrow">Beyond the room</div>
+      <h2>Make the mountains part of your stay.</h2>
+      <p>Turn a simple overnight stay into a small adventure with optional experiences designed around the landscape.</p>
+      <div class="exp-list">
+        <div class="exp-item"><span>01</span><strong>Sunrise viewpoint walk</strong></div>
+        <div class="exp-item"><span>02</span><strong>Local food experience</strong></div>
+        <div class="exp-item"><span>03</span><strong>Private sunset setup</strong></div>
+        <div class="exp-item"><span>04</span><strong>Group bonfire evening</strong></div>
+      </div>
+      <a class="btn" href="#book">Plan your stay</a>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="section-head"><div class="eyebrow">Guest stories</div><h2>What a stay can feel like.</h2></div>
+    <div class="testimonials">
+      <div class="quote"><div class="stars">★★★★★</div><p>“The whole idea is simple: quiet hills, fresh air and a beautiful sunset.”</p><small>— Sample guest · Dhaka</small></div>
+      <div class="quote"><div class="stars">★★★★★</div><p>“A perfect concept for a small family trip. The valley-view deck is the highlight.”</p><small>— Sample guest · Chattogram</small></div>
+      <div class="quote"><div class="stars">★★★★★</div><p>“Loved the peaceful atmosphere and the feeling of being above the clouds.”</p><small>— Sample guest · Cox's Bazar</small></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta" id="contact">
+  <div class="container">
+    <h2>Your next mountain morning is waiting.</h2>
+    <p>Use this section for your resort's real phone number, WhatsApp button, Google Maps location and booking CTA.</p>
+    <a class="btn" href="#book">Check availability</a>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div><div class="logo">Cloud<span>haven</span></div><p style="margin-top:12px">A premium hill-resort website concept for Mirinja Valley, Bandarban.</p></div>
+      <div><h3>Explore</h3><a href="#stay">Rooms</a><a href="#experience">Experiences</a><a href="#gallery">Gallery</a></div>
+      <div><h3>Contact</h3><p>Mirinja Valley, Lama, Bandarban</p><p>+880 1XXX-XXXXXX</p><p>hello@cloudhaven.example</p></div>
+      <div><h3>Booking</h3><a href="#book">Check availability</a><a href="#">WhatsApp</a><a href="#">Google Maps</a></div>
+    </div>
+    <div class="copy"><span>© 2026 Cloudhaven. Demo website.</span><span>Built for a resort booking showcase.</span></div>
+  </div>
+</footer>
+
+<div class="modal" id="modal">
+  <div class="modal-box">
+    <button class="close" onclick="closeModal()">×</button>
+    <h2>Request your stay</h2>
+    <p id="selectedRoom" class="notice"></p>
+    <form class="form-grid" onsubmit="submitBooking(event)">
+      <input id="name" placeholder="Full name" required>
+      <input id="phone" placeholder="Phone / WhatsApp" required>
+      <input id="modalIn" type="date" required>
+      <input id="modalOut" type="date" required>
+      <select id="modalGuests"><option>2 Guests</option><option>3 Guests</option><option>4 Guests</option><option>5 Guests</option><option>6+ Guests</option></select>
+      <input id="modalRoom" placeholder="Room type" readonly>
+      <textarea id="message" class="full" placeholder="Any special request?"></textarea>
+      <button class="btn full" type="submit">Send booking request</button>
+    </form>
+    <div class="notice">Demo mode: connect this form to Firebase Firestore or WhatsApp for real bookings.</div>
+  </div>
+</div>
+
+<script>
+let selected = "Any room";
+function chooseRoom(room){
+  selected = room;
+  document.getElementById("modalRoom").value = room;
+  document.getElementById("selectedRoom").textContent = "Selected: " + room;
+  document.getElementById("modal").classList.add("show");
+}
+function openBooking(e){
+  e.preventDefault();
+  selected = document.getElementById("staytype").value;
+  document.getElementById("modalRoom").value = selected;
+  document.getElementById("modalIn").value = document.getElementById("checkin").value;
+  document.getElementById("modalOut").value = document.getElementById("checkout").value;
+  document.getElementById("modalGuests").value = document.getElementById("guests").value;
+  document.getElementById("selectedRoom").textContent = "Selected: " + selected;
+  document.getElementById("modal").classList.add("show");
+}
+function closeModal(){document.getElementById("modal").classList.remove("show")}
+function submitBooking(e){
+  e.preventDefault();
+  const data = {
+    name: document.getElementById("name").value,
+    phone: document.getElementById("phone").value,
+    checkIn: document.getElementById("modalIn").value,
+    checkOut: document.getElementById("modalOut").value,
+    guests: document.getElementById("modalGuests").value,
+    room: document.getElementById("modalRoom").value,
+    message: document.getElementById("message").value
+  };
+  console.log("Booking request:", data);
+  alert("Booking request received in demo mode. Connect Firebase/WhatsApp to make it live.");
+  closeModal();
+}
+document.getElementById("modal").addEventListener("click",e=>{if(e.target.id==="modal")closeModal()});
+</script>
+</body>
+</html>
